@@ -3,6 +3,7 @@ package com.filmmenager;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
@@ -16,8 +17,8 @@ public class FilmController {
                              .body(new FilmSearchResponseDto());
     }
 
-    @GetMapping("/film/fav/{title}")
-    public ResponseEntity<FilmFavoriteResponseDto> setFavorite(@PathVariable String title) {
+    @GetMapping("/film/{title}")
+    public ResponseEntity<FilmFavoriteResponseDto> setFavorite(@PathVariable String title, @RequestHeader boolean favorite) {
         return ResponseEntity.ok()
                              .body(new FilmFavoriteResponseDto());
     }
