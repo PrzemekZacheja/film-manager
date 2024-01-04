@@ -12,19 +12,13 @@ import java.util.Collections;
 public class FilmController {
 
     @GetMapping("/film/{title}")
-    public ResponseEntity<FilmSearchResponseDto> getFilmByTitle(@PathVariable String title) {
+    public ResponseEntity<FilmResponseDto> getFilmByTitle(@PathVariable String title, @RequestHeader(required = false) boolean favorite) {
         return ResponseEntity.ok()
-                             .body(new FilmSearchResponseDto());
-    }
-
-    @GetMapping("/film/{title}")
-    public ResponseEntity<FilmFavoriteResponseDto> setFavorite(@PathVariable String title, @RequestHeader boolean favorite) {
-        return ResponseEntity.ok()
-                             .body(new FilmFavoriteResponseDto());
+                             .body(new FilmResponseDto());
     }
 
     @GetMapping("/films")
-    public ResponseEntity< FilmListResponse> getAllFilms() {
+    public ResponseEntity<FilmListResponse> getAllFilms() {
         return ResponseEntity.ok()
                              .body(new FilmListResponse(Collections.emptyList()));
     }
