@@ -1,5 +1,7 @@
-package com.filmmenager;
+package com.filmmanager.infrastructure.filmreceiver.controller;
 
+import com.filmmanager.domain.filmreceiver.dto.FilmListResponseDto;
+import com.filmmanager.domain.filmreceiver.dto.FilmResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +20,8 @@ public class FilmController {
     }
 
     @GetMapping("/films")
-    public ResponseEntity<FilmListResponse> getAllFilms() {
+    public ResponseEntity<FilmListResponseDto> getAllFilms() {
         return ResponseEntity.ok()
-                             .body(new FilmListResponse(Collections.emptyList()));
+                             .body(new FilmListResponseDto(Collections.emptyList()));
     }
 }

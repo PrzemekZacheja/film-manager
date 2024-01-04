@@ -1,4 +1,4 @@
-package com.filmmenager;
+package com.filmmanager;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
