@@ -1,2 +1,11 @@
 feign-client:
   apikey: 1f5bd5dc
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:54320/postgres"
+    username: user
+    password: admin
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
