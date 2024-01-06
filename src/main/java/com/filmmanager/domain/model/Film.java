@@ -15,14 +15,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Film {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
     String title;
     String genre;
     String plot;
     String director;
     String poster;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
 
     public Film() {
     }

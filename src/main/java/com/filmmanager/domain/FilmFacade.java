@@ -5,6 +5,8 @@ import com.filmmanager.domain.model.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.List;
+
 public class FilmFacade {
 
     @Autowired
@@ -15,15 +17,28 @@ public class FilmFacade {
     String apikey;
 
     public FilmResponseDto fetchFilmByTitle(String title) {
-        FilmResponseDto filmByTitle = client.getFilmByTitle(apikey, title);
-        return filmByTitle;
+        return client.getFilmByTitle(apikey, title);
     }
 
-    public FilmResponseDto addFilmToFavourites(FilmResponseDto filmResponseDto) {
+    public void addFilmToFavourites(FilmResponseDto filmResponseDto) {
         Film film = FilmMapper.maptoFilm(filmResponseDto);
         repository.save(film);
         Film byTitle = repository.findByTitle(filmResponseDto.title());
-        FilmResponseDto returnedFilmResponseDto = FilmMapper.mapToFilmResponseDto(byTitle);
-        return returnedFilmResponseDto;
+        FilmMapper.mapToFilmResponseDto(byTitle);
+    }
+
+    public boolean isFavourite(FilmResponseDto filmResponseDto) {
+        Film byTitle = repository.findByTitle(filmResponseDto.title());
+        return byTitle != null;
+    }
+
+    public void removeFilmFromFavourites(FilmResponseDto filmResponseDto) {
+        Film byTitle = repository.findByTitle(filmResponseDto.title());
+        Film delete = repository.delete(byTitle);
+        FilmMapper.mapToFilmResponseDto(byTitle);
+    }
+
+    public List<FilmResponseDto> fetchAllFavouriteFilms() {
+        return FilmMapper.mapToListFilmResponseDto(repository.findAll());
     }
 }
