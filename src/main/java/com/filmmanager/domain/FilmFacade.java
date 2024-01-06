@@ -1,6 +1,7 @@
 package com.filmmanager.domain;
 
 import com.filmmanager.domain.dto.FilmResponseDto;
+import com.filmmanager.domain.model.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -8,6 +9,8 @@ public class FilmFacade {
 
     @Autowired
     OmdbApi client;
+    @Autowired
+    FilmRepository repository;
     @Value("${feign-client.apikey}")
     String apikey;
 
@@ -17,6 +20,10 @@ public class FilmFacade {
     }
 
     public FilmResponseDto addFilmToFavourites(FilmResponseDto filmResponseDto) {
-        return null;
+        Film film = FilmMapper.maptoFilm(filmResponseDto);
+        repository.save(film);
+        Film byTitle = repository.findByTitle(filmResponseDto.title());
+        FilmResponseDto returnedFilmResponseDto = FilmMapper.mapToFilmResponseDto(byTitle);
+        return returnedFilmResponseDto;
     }
 }
