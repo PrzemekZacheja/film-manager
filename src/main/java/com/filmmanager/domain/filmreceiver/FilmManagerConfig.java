@@ -4,10 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class FilmMenagerConfig {
+public class FilmManagerConfig {
 
     @Bean
-    FilmFacade filmFacade() {
+    public FilmFacade filmFacade() {
         return new FilmFacade();
     }
 }

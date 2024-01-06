@@ -1,5 +1,6 @@
 package com.filmmanager.domain.filmreceiver;
 
+import com.filmmanager.domain.filmreceiver.dto.FilmResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -8,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface OmdbApi {
 
     @GetMapping
-    String getFilmByTitle(@RequestParam String t, @RequestParam(value = "${feignclient.apikey}") String apikey);
+    FilmResponseDto getFilmByTitle(@RequestParam String apikey, @RequestParam String t);
 
 }
