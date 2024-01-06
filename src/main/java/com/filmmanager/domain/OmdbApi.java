@@ -1,6 +1,6 @@
-package com.filmmanager.domain.filmreceiver;
+package com.filmmanager.domain;
 
-import com.filmmanager.domain.filmreceiver.dto.FilmResponseDto;
+import com.filmmanager.domain.dto.FilmResponseDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

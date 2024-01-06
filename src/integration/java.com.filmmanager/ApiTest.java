@@ -1,6 +1,6 @@
 import com.filmmanager.FilmManagerApplication;
-import com.filmmanager.domain.filmreceiver.FilmFacade;
-import com.filmmanager.domain.filmreceiver.dto.FilmResponseDto;
+import com.filmmanager.domain.FilmFacade;
+import com.filmmanager.domain.dto.FilmResponseDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

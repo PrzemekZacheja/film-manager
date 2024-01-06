@@ -1,4 +1,4 @@
-package com.filmmanager.domain.filmreceiver.dto;
+package com.filmmanager.domain.dto;
 
 
 import java.util.List;
