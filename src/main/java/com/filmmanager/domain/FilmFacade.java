@@ -34,7 +34,7 @@ public class FilmFacade {
 
     public void removeFilmFromFavourites(FilmResponseDto filmResponseDto) {
         Film byTitle = repository.findByTitle(filmResponseDto.title());
-        Film delete = repository.delete(byTitle);
+        repository.delete(byTitle);
         FilmMapper.mapToFilmResponseDto(byTitle);
     }
 

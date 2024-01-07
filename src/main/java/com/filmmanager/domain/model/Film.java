@@ -26,12 +26,4 @@ public class Film {
 
     public Film() {
     }
-
-    public Film(String title, String genre, String plot, String director, String poster) {
-        this.title = title;
-        this.genre = genre;
-        this.plot = plot;
-        this.director = director;
-        this.poster = poster;
-    }
 }
