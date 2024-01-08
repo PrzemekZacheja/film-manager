@@ -21,14 +21,12 @@ public class FilmFacade {
         return client.getFilmByTitle(apikey, title);
     }
 
-    public FilmResponseDto addFilmToFavourites(FilmResponseDto filmResponseDto) {
+    public void addFilmToFavourites(FilmResponseDto filmResponseDto) {
         Film film = FilmMapper.maptoFilm(filmResponseDto);
         if (repository.existsByTitleIgnoreCase(film.getTitle())) {
             throw new DuplicateKeyException("Film with title: " + film.getTitle() + " already exists");
-            //TODO obsłuż 500
         } else {
-            Film saved = repository.save(film);
-            return FilmMapper.mapToFilmResponseDto(saved);
+            repository.save(film);
         }
     }
 
