@@ -1,15 +1,22 @@
-Film Manager Application
-This project is a Spring Boot application for managing films.
+# Film Manager Application
 
-Copy
-git clone https://github.com/your_username/film-manager.git
+This project is a Spring Boot application for managing films. The application uses an external API
+OMDB https://www.omdbapi.com/
+Videos marked as favorites are saved to a PostgreSQL database on Docker
+
+## Functionality:
+
+1. **Video Search:**
+2. **Adding a video to your favorites:**
+3. **View your favorite videos:**
+
+### Features: Search films by title and mark them as favourite
+
+Copy git clone https://github.com/your_username/film-manager.git
 
 The application will be running at http://localhost:8080
 
-Features
-Search films by title and mark them as favourite
-
-REST API:
+#### REST API doc from SWAGGER:
 {
     "openapi": "3.0.1",
     "info": {
@@ -234,5 +241,6 @@ REST API:
 }
 
 TODOs
-Add integration tests
-implementing Paging and Sorting
+
+1. Add integration tests
+2. implementing Paging and Sorting
