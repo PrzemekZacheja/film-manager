@@ -1,5 +1,0 @@
-1. The user enters the title of the film "Dune" and uses GET /film/{title}.
-    It is given a status of 200 and an object containing the title, short description, genre, director and poster.
-2. User uses GET /films and gets an empty list
-2. The user enters the title of the film "Dune" and uses GET /film/{title}, along with the header "favorite = true". It receives status 200 and the video is saved to the database as a favorite.
-3. User uses GET /films and gets 1 movie in the database
