@@ -13,3 +13,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+    show-sql: true
+
+  data:
+    mongodb:
+      auto-index-creation: true

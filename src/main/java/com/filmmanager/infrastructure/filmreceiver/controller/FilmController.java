@@ -2,6 +2,7 @@ package com.filmmanager.infrastructure.filmreceiver.controller;
 
 import com.filmmanager.domain.FilmFacade;
 import com.filmmanager.domain.dto.FilmResponseDto;
+import com.filmmanager.infrastructure.filmreceiver.controller.error.FilmNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
@@ -22,29 +23,21 @@ public class FilmController {
     @GetMapping("/film/{title}")
     public ResponseEntity<FilmResponseDto> getFilmByTitle(@PathVariable String title, @RequestHeader(required = false) boolean favorite) {
         FilmResponseDto filmResponseDto = filmFacade.fetchFilmByTitle(title);
-        log.info("Fetched film: " + filmResponseDto);
-        if (favorite) {
-            filmFacade.addFilmToFavourites(filmResponseDto);
-            log.info("Added film to favourites: " + filmResponseDto);
-        } else if (filmFacade.isFavourite(filmResponseDto)) {
-            filmFacade.removeFilmFromFavourites(filmResponseDto);
-            log.info("Removed film from favourites: " + filmResponseDto);
-            //TODO popraw usuwanie filmu z ulubionych jeśli jest w ulubionych a
-            // header jest ustawiony na true to go nie usuwa ale dodaje kolejny raz do bazy danych, może trzeba unique ustawić
-        } else {
-            log.info("Film is not marked as favourite: " + filmResponseDto);
-            return ResponseEntity.ok()
-                                 .body(filmResponseDto);
-        }
+        log.info("Fetched film from foreign Api: " + filmResponseDto);
 
-        if (filmResponseDto != null) {
+        if (filmResponseDto.title() != null) {
             log.info("Returned film: " + filmResponseDto);
+            if (favorite) {
+                filmFacade.addFilmToFavourites(filmResponseDto);
+                log.info("Added film to favourites");
+            } else {
+                log.info("Film is not marked as favourite: " + filmResponseDto);
+            }
             return ResponseEntity.ok()
                                  .body(filmResponseDto);
         } else {
             log.warn("Film not found: " + title);
-            return ResponseEntity.notFound()
-                                 .build();
+            throw new FilmNotFoundException("Film is not found");
         }
     }
 

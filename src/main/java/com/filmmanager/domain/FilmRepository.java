@@ -8,11 +8,9 @@ import java.util.List;
 public interface FilmRepository extends Repository<Film, Long> {
 
 
-    void save(Film film);
-
-    Film findByTitle(String title);
-
-    Film delete(Film title);
+    Film save(Film film);
 
     List<Film> findAll();
+
+    boolean existsByTitleIgnoreCase(String title);
 }
