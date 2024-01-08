@@ -15,6 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Film {
+
     String title;
     String genre;
     String plot;

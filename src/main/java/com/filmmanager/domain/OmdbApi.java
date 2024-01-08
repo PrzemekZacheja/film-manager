@@ -12,3 +12,5 @@ public interface OmdbApi {
     FilmResponseDto getFilmByTitle(@RequestParam String apikey, @RequestParam String t);
 
 }
+
+//TODO implementuj Pageable
