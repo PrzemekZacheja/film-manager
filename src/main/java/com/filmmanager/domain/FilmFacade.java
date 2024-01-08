@@ -4,6 +4,7 @@ import com.filmmanager.domain.dto.FilmResponseDto;
 import com.filmmanager.domain.model.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DuplicateKeyException;
 
 import java.util.List;
 
@@ -20,22 +21,15 @@ public class FilmFacade {
         return client.getFilmByTitle(apikey, title);
     }
 
-    public void addFilmToFavourites(FilmResponseDto filmResponseDto) {
+    public FilmResponseDto addFilmToFavourites(FilmResponseDto filmResponseDto) {
         Film film = FilmMapper.maptoFilm(filmResponseDto);
-        repository.save(film);
-        Film byTitle = repository.findByTitle(filmResponseDto.title());
-        FilmMapper.mapToFilmResponseDto(byTitle);
-    }
-
-    public boolean isFavourite(FilmResponseDto filmResponseDto) {
-        Film byTitle = repository.findByTitle(filmResponseDto.title());
-        return byTitle != null;
-    }
-
-    public void removeFilmFromFavourites(FilmResponseDto filmResponseDto) {
-        Film byTitle = repository.findByTitle(filmResponseDto.title());
-        repository.delete(byTitle);
-        FilmMapper.mapToFilmResponseDto(byTitle);
+        if (repository.existsByTitleIgnoreCase(film.getTitle())) {
+            throw new DuplicateKeyException("Film with title: " + film.getTitle() + " already exists");
+            //TODO obsłuż 500
+        } else {
+            Film saved = repository.save(film);
+            return FilmMapper.mapToFilmResponseDto(saved);
+        }
     }
 
     public List<FilmResponseDto> fetchAllFavouriteFilms() {
