@@ -1,8 +1,4 @@
-import com.filmmanager.FilmManagerApplication;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest(classes = FilmManagerApplication.class)
-public class IntegrationTest {
+public class IntegrationTest extends BaseIntegrationTest {
 
 
 }
